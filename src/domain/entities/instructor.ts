@@ -4,11 +4,5 @@ interface InstructorProps {
     name: string
 }
 
-export class Instructor extends Entity {
-    public name: string
-
-    constructor(props: InstructorProps, id?: string) {
-        super(id)
-        this.name = props.name
-    }
+export class Instructor extends Entity<InstructorProps> {
 }
