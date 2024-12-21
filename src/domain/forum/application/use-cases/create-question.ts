@@ -25,7 +25,7 @@ export class CreateQuestionUseCase {
         const question = Question.create({
             authorId: new UniqueEntityID(authorId),
             title,
-            content
+            content,
         })
 
         await this.questionsRepository.create(question)
