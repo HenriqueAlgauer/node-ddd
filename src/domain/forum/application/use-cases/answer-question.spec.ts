@@ -1,7 +1,4 @@
-import { expect, test } from "vitest";
 import { AnswerQuestionUseCase } from "./answer-question";
-import { AnswerRespository } from "../repositories/answer-repository";
-import { Answer } from "../../enterprise/entities/answer";
 import { InMemoryAnswersRepository } from "../../../../../test/repositories/in-memory-answers-repository";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
