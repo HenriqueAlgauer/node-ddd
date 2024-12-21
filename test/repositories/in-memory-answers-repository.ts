@@ -1,7 +1,8 @@
-import { AnswerRepository } from "../../src/domain/forum/application/repositories/answer-repository"
+import { AnswersRepository } from "../../src/domain/forum/application/repositories/answers-repository"
 import { Answer } from "../../src/domain/forum/enterprise/entities/answer"
 
-export class InMemoryAnswersRepository implements AnswerRepository {
+export class InMemoryAnswersRepository implements AnswersRepository {
+
     public items: Answer[] = []
 
     async findById(id: string) {
@@ -16,6 +17,12 @@ export class InMemoryAnswersRepository implements AnswerRepository {
 
     async create(answer: Answer) {
         this.items.push(answer)
+    }
+
+    async save(answer: Answer) {
+        const itemIndex = this.items.findIndex((item) => item.id === answer.id)
+
+        this.items[itemIndex] = answer
     }
 
     async delete(answer: Answer): Promise<void> {
