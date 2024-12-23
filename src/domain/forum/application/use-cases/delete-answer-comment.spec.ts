@@ -1,4 +1,5 @@
 import { InMemoryAnswerCommentsRepository } from "../../../../../test/repositories/in-memory-answer-comments-repository";
+import { CommentOnAnswerUseCase } from "./comment-on-answer";
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment";
 import { makeAnswerComment } from "../../../../../test/factories/make-answer-comment";
 import { UniqueEntityID } from "../../../../core/entities/unique-entity-id";
@@ -32,7 +33,7 @@ describe('Delete answer Comment', () => {
 
         await inMemoryAnswerCommentsRepository.create(answerComment)
 
-        expect(() => {
+        await expect(() => {
             return sut.execute({
                 authorId: 'author-2',
                 answerCommentId: answerComment.id.toString(),

@@ -37,7 +37,7 @@ describe('Edit a answer', () => {
 
         await inMemoryAnswersRepository.create(newAnswer)
 
-        expect(() => {
+        await expect(() => {
             return sut.execute({
                 answerId: newAnswer.id.toValue(),
                 authorId: 'author-2',
