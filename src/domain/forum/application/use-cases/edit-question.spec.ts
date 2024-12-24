@@ -12,8 +12,8 @@ let sut: EditQuestionUseCase
 
 describe('Edit a question', () => {
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
         inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentRepository()
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentRepository)
 
         sut = new EditQuestionUseCase(
             inMemoryQuestionsRepository,
@@ -51,6 +51,7 @@ describe('Edit a question', () => {
             content: 'Conteudo novo do edit'
         })
 
+        expect(inMemoryQuestionsRepository.items[0].attachments.currentItems).toHaveLength(2)
         expect(inMemoryQuestionsRepository.items[0].attachments.currentItems).toHaveLength(2)
         expect(inMemoryQuestionsRepository.items[0].attachments.currentItems).toEqual([
             expect.objectContaining({ attachmentId: new UniqueEntityID('1') }),
